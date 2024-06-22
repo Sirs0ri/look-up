@@ -27,6 +27,12 @@ label {
     margin-block: 0.5em 0;
   }
 
+  input,
+  button {
+    border: 1px solid color-mix(in srgb, currentColor, transparent);
+    border-radius: 0.25em;
+  }
+
   input {
     padding-inline: 1em;
   }
