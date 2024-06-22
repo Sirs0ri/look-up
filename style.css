@@ -14,16 +14,26 @@ body {
 
   &>* {
     margin: 0;
+    padding: 0;
   }
 }
 
-h1 {
-  font-size: 2em;
+.hero {
+  h1 {
+    font-size: 2em;
+
+    sup {
+      font-size: 0.5em;
+    }
+  }
+
+  h1,
+  p {
+    margin-block-start: 1em;
+    margin-block-end: 0;
+  }
 }
 
-h1 sup {
-  font-size: 0.5em;
-}
 
 #searchForm,
 .emote-wrapper {
@@ -82,7 +92,6 @@ h1 sup {
 
 #emojicons {
   list-style-type: none;
-  padding: 0;
 
   display: grid;
   gap: 1em;
