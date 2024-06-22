@@ -1,7 +1,7 @@
 let allEmotes
 let filteredEmotes
-//#region helpers
 
+//#region emote processing
 
 function normalizeEmote(raw) {
   const {
@@ -14,7 +14,7 @@ function normalizeEmote(raw) {
   if (!text || !name) return
 
   return {
-    text: text.toLowerCase(),
+    text: text,
     name: name.toLowerCase(),
     id: id.toLowerCase(),
     tags,
@@ -29,8 +29,8 @@ async function loadEmotes() {
   filterEmotes()
 }
 
-const debounce_duration = 200
-let debounce
+const filterDebounceDuration = 200
+let filterDebounce
 
 function filterEmotes() {
   const filter = search.value.toLowerCase()
@@ -70,7 +70,7 @@ function makeEmoteElement(emote) {
   input.addEventListener("focus", evt => evt.target.select())
 
   const btn = document.createElement("button")
-  btn.addEventListener("click", onBtnClick)
+  btn.addEventListener("click", onCopyBtnClick)
   btn.textContent = "📋"
 
   label.appendChild(nameEl)
@@ -80,7 +80,11 @@ function makeEmoteElement(emote) {
   return wrapper
 }
 
-async function onBtnClick(evt) {
+//#endregion
+
+//#region event handlers
+
+async function onCopyBtnClick(evt) {
   const success = await copyTextToClipboard(evt.target.parentElement.dataset.emote)
   if (success) {
     evt.target.classList.add("success")
@@ -90,24 +94,21 @@ async function onBtnClick(evt) {
   }
 }
 
-function onSearchChange(immediate = false) {
-  if (debounce) clearTimeout(debounce)
+function onSearchInput(immediate = false) {
+  if (filterDebounce) clearTimeout(filterDebounce)
 
   if (immediate) filterEmotes()
-  else debounce = setTimeout(filterEmotes, debounce_duration)
+  else filterDebounce = setTimeout(filterEmotes, filterDebounceDuration)
 }
+
+search.addEventListener("input", () => onSearchInput())
 
 function onSearchClear() {
   search.value = ""
-  onSearchChange(true)
+  onSearchInput(true)
 }
 
-search.addEventListener("input", () => onSearchChange())
-clearSearch.addEventListener("click", onSearchClear)
-
-loadEmotes()
-
-
+clearSearch.addEventListener("click", () => onSearchClear())
 
 function fallbackCopyTextToClipboard(text) {
   const textArea = document.createElement("textarea")
@@ -159,3 +160,8 @@ function setError(msg) {
 }
 
 clearError.addEventListener("click", () => setError(''))
+
+//#endregion
+
+// Finally, when everything's loaded, load and display the emotes
+loadEmotes()
