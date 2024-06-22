@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emojicons revived</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <h1>look up!</h1>
+  <p>A lookup page for emoticons</p>
+  <label>
+    <p>Search for an emote:</p>
+    <input id="search" type="text">
+    <button id="clearSearch">✖️</button>
+  </label>
+  <ul id="emojicons" data-empty-message="Loading..."></ul>
+
+  <footer>
+    built by <a href="https://github.com/Sirs0ri/">@sirs0ri</a>. inspired by <a
+      href="https://web.archive.org/web/20230407030512/http://emojicons.com/home">
+      emojicons.</a>
+  </footer>
+
+  <div class="error-anchor">
+    <div class="wrapper hidden">
+      <span id="error"></span>
+      <button id="clearError">ok</button>
+    </div>
+  </div>
+</body>
+
+</html>
