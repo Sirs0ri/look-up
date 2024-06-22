@@ -1,0 +1,10 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "emotes.json"
+      ],
+      "url": "/emotes.schema.json"
+    }
+  ]
+}

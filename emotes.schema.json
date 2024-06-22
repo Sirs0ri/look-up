@@ -1,0 +1,83 @@
+{
+  "$id": "look-up/emotes.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Emotes",
+  "type": "object",
+  "patternProperties": {
+    "...": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The emote",
+          "unique": true,
+          "minLength": 2
+        },
+        "name": {
+          "type": "string",
+          "description": "The emote's name"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags that categorize the emote",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              // moods
+              "angry",
+              "annoyed",
+              "spooky",
+              "shy",
+              "confused",
+              "strong",
+              "cool",
+              "fun",
+              "happy",
+              "surprised",
+              "excited",
+              "sad",
+              "cute",
+              "pretty",
+              "love",
+              "lewd",
+              "evil",
+              // actions
+              "blush",
+              "derp",
+              "fight",
+              "freak out",
+              "gesture",
+              "high five",
+              "hug",
+              "kiss",
+              "pointing",
+              "scream",
+              "shrug",
+              "smile",
+              "stare",
+              "table flip",
+              "talk",
+              // what
+              "animal",
+              "boobs",
+              "butt",
+              "cat",
+              "face",
+              "flower",
+              "food",
+              "gaming",
+              "heart",
+              "holidays",
+              "meme",
+              "music",
+              "person",
+              "thing",
+              "television",
+              "text"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

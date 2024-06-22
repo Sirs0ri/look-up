@@ -24,8 +24,11 @@ function normalizeEmote(raw) {
 async function loadEmotes() {
   allEmotes = await fetch("emotes.json")
     .then(d => d.json())
-    .then(d => d.map(emote => normalizeEmote(emote)).filter(emote => emote))
-    .then(d => d.sort((a, b) => a.name.localeCompare(b.name)))
+    .then(d => Object.entries(d)
+      .map(([id, emote]) => normalizeEmote({ ...emote, id }))
+      .filter(emote => emote)
+      .sort((a, b) => a.name.localeCompare(b.name))
+    )
   filterEmotes()
 }
 
