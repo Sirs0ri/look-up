@@ -11,13 +11,17 @@
 </head>
 
 <body>
-  <h1>look up!</h1>
-  <p>A lookup page for emoticons</p>
-  <label>
-    <p>Search for an emote:</p>
+  <section>
+    <h1>look up! ◔‿◔<sup>🌸</sup></h1>
+    <p>A lookup page for emoticons</p>
+  </section>
+  <form id="searchForm">
+    <label for="search">Search for an emote:</label>
     <input id="search" type="text">
-    <button id="clearSearch">✖️</button>
-  </label>
+    <button id="clearSearch" type="reset">
+      <span class="visually-hidden">Clear search input</span>
+    </button>
+  </form>
   <ul id="emojicons" data-empty-message="Loading..."></ul>
 
   <footer>

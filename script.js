@@ -61,23 +61,25 @@ function updateEmoteList() {
 
 function makeEmoteElement(emote) {
   const wrapper = document.createElement("li")
+  wrapper.classList.add("emote-wrapper")
   const label = document.createElement("label")
   label.dataset.emote = emote.text
-  const nameEl = document.createElement("p")
-  nameEl.innerText = emote.name
+  label.innerText = emote.name
+  label.htmlFor = emote.id
 
   const input = document.createElement("input")
   input.value = emote.text
   input.addEventListener("focus", evt => evt.target.select())
+  input.id = emote.id
 
   const btn = document.createElement("button")
+  btn.innerHTML = `<span class="visually-hidden"> copy "${emote.name}"</span>`
+  btn.dataset.clipboardContent = emote.text
   btn.addEventListener("click", onCopyBtnClick)
-  btn.textContent = "📋"
 
-  label.appendChild(nameEl)
-  label.appendChild(input)
-  label.appendChild(btn)
   wrapper.appendChild(label)
+  wrapper.appendChild(input)
+  wrapper.appendChild(btn)
   return wrapper
 }
 
@@ -86,7 +88,7 @@ function makeEmoteElement(emote) {
 //#region event handlers
 
 async function onCopyBtnClick(evt) {
-  const success = await copyTextToClipboard(evt.target.parentElement.dataset.emote)
+  const success = await copyTextToClipboard(evt.target.dataset.clipboardContent)
   if (success) {
     evt.target.classList.add("success")
     setTimeout(() => {
@@ -102,14 +104,8 @@ function onSearchInput(immediate = false) {
   else filterDebounce = setTimeout(filterEmotes, filterDebounceDuration)
 }
 
-search.addEventListener("input", () => onSearchInput())
-
-function onSearchClear() {
-  search.value = ""
-  onSearchInput(true)
-}
-
-clearSearch.addEventListener("click", () => onSearchClear())
+searchForm.addEventListener("input", () => onSearchInput())
+searchForm.addEventListener("reset", () => onSearchInput())
 
 function fallbackCopyTextToClipboard(text) {
   const textArea = document.createElement("textarea")

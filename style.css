@@ -3,26 +3,35 @@
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
   padding: 1em;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 2.5em;
   min-height: 100dvh;
+  max-width: 600px;
+
+  &>* {
+    margin: 0;
+  }
 }
 
-h1::after {
-  content: "◔‿◔";
-  padding-inline-start: 0.5em;
+h1 {
+  font-size: 2em;
 }
 
-label {
+h1 sup {
+  font-size: 0.5em;
+}
+
+#searchForm,
+.emote-wrapper {
   display: grid;
   gap: 0.25em;
   grid-template-columns: 1fr auto;
 
-  p {
+  label {
     grid-column: span 2;
     margin-block: 0.5em 0;
   }
@@ -42,11 +51,21 @@ label {
     height: 3em;
 
     position: relative;
+    cursor: pointer;
+
+    &[data-clipboard-content]::before {
+      content: "📋";
+    }
+
+    &[type="reset"]::before {
+      content: "✖️";
+    }
 
     &::after {
       content: "";
       position: absolute;
       inset: 0;
+      border-radius: inherit;
       display: grid;
       place-items: center;
       background: inherit;
@@ -64,35 +83,12 @@ label {
 #emojicons {
   list-style-type: none;
   padding: 0;
-  margin: 0;
-  margin-top: 2em;
 
   display: grid;
   gap: 1em;
 
   &:empty::before {
     content: attr(data-empty-message);
-  }
-
-  li {
-    button {
-
-      &::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        display: grid;
-        place-items: center;
-        background: inherit;
-        opacity: 0;
-        transition: opacity 200ms;
-      }
-
-      &.success::after {
-        content: "✔️";
-        opacity: 1;
-      }
-    }
   }
 }
 
@@ -135,4 +131,14 @@ footer {
       }
     }
   }
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
