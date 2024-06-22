@@ -101,6 +101,7 @@ footer {
   display: grid;
   place-items: center;
   padding: 1em;
+  pointer-events: none;
 
   .wrapper {
     padding: 1em;
@@ -110,6 +111,7 @@ footer {
     color: white;
 
     transition: opacity 200ms;
+    pointer-events: all;
 
     &.hidden {
       opacity: 0;
