@@ -43,8 +43,6 @@ function filterEmotes() {
 }
 
 function updateEmoteList() {
-  console.log(filteredEmotes.length)
-
   if (!allEmotes) return
 
   while (emojicons.children.length) {
