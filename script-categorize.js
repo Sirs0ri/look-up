@@ -198,12 +198,16 @@ function saveData(evt, exportToFile = false) {
   const votesJson = JSON.stringify(allVotes, null, 2)
   localStorage.setItem("votes", votesJson)
 
-  evt.target.classList.add("success")
-  setTimeout(() => {
-    evt.target.classList.remove("success")
-  }, 1000);
+  if (evt?.type === "click") {
+    evt.target.classList.add("success")
 
-  updateTagOptions()
+    setTimeout(() => {
+      evt.target.classList.remove("success")
+    }, 1000)
+
+    updateTagOptions()
+  }
+
 
   if (!exportToFile) return
 
@@ -224,3 +228,5 @@ saveAndExportCategories.addEventListener("click", (evt) => saveData(evt, true))
 // Finally, when everything's loaded, load and display the emotes
 loadTags()
 loadEmotes()
+
+addEventListener("beforeunload", () => saveData());
