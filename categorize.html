@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="me" href="https://corteximplant.com/@Sirs0ri">
+  <title>look up! - Categorizer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-categorize.css">
+  <script src="https://unpkg.com/json5@2/dist/index.min.js"></script>
+  <script src="script-categorize.js" defer></script>
+</head>
+
+<body>
+  <section class="hero">
+    <h1>look up! ◔‿◔<sup>🌸</sup></h1>
+    <p>A lookup page for emoticons</p>
+  </section>
+  <form id="searchForm">
+    <label for="search">Select a tag:</label>
+    <select id="search" type="text">
+    </select>
+  </form>
+  <p>Does the following emote match the selected tag?</p>
+  <ul id="emojicons" data-empty-message="Loading..."></ul>
+
+  <section class="buttons">
+
+    <button id="undo">undo last vote</button>
+    <button id="saveAndExportCategories">Export Votes</button>
+    <button id="saveCategories">Save Votes</button>
+  </section>
+
+  <footer>
+    built by <a href="https://github.com/Sirs0ri/" target="_blank">@sirs0ri</a>. inspired by <a
+      href="https://web.archive.org/web/20230407030512/http://emojicons.com/home" target="_blank">
+      emojicons.</a>
+  </footer>
+
+  <div class="error-anchor">
+    <div class="wrapper hidden">
+      <span id="error"></span>
+      <button id="clearError">ok</button>
+    </div>
+  </div>
+</body>
+
+</html>

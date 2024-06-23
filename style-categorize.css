@@ -1,0 +1,116 @@
+.emote-wrapper-voting {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em 1em;
+  padding: 1em;
+
+  border-radius: 2em;
+
+  grid-area: 1 / 1;
+  background-color: white;
+  transform-origin: 10% 90%;
+
+  transition-property: scale, opacity, rotate;
+  transition-duration: 200ms;
+
+  position: relative;
+
+  &.voted,
+  &:nth-last-child(1 of :not(.voted)) {
+    box-shadow: 1px 3px 4px color-mix(in srgb, black, transparent 50%);
+  }
+
+  &.voted {
+    pointer-events: none;
+    scale: 0.9;
+    opacity: 0;
+    rotate: -0.1turn;
+  }
+
+  p {
+    text-align: center;
+    grid-column: span 2;
+
+    &.emote-display {
+      height: 3em;
+    }
+  }
+
+  button {
+    height: 5em;
+    width: 100%;
+    max-width: 15em;
+
+    border-radius: 0.5em;
+
+    --background: black;
+    background-color: color-mix(in srgb, white, var(--background) 10%);
+    border: 1px solid var(--background);
+
+    &.yes {
+      --background: green;
+      justify-self: end;
+    }
+
+    &.no {
+      --background: red;
+      justify-self: start;
+    }
+
+    &:hover {
+      background-color: color-mix(in srgb, white, var(--background) 15%);
+    }
+
+    &:active {
+      background-color: color-mix(in srgb, white, var(--background) 20%);
+    }
+  }
+}
+
+select#search {
+  cursor: pointer;
+}
+
+
+select#search,
+#undo,
+#saveCategories,
+#saveAndExportCategories {
+  height: 3em;
+  padding-inline: 1em;
+  border: 1px solid color-mix(in srgb, currentColor, transparent);
+  border-radius: 0.25em;
+}
+
+section.buttons {
+  margin-block-start: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+
+  #undo {
+    grid-column: span 2;
+  }
+}
+
+/* #saveCategories {
+  position: fixed;
+  inset-inline-end: 1em;
+  inset-block-end: 2em;
+  height: 5em;
+  aspect-ratio: 1;
+  border-radius: 30%;
+  border: none;
+  box-shadow: 1px 3px 4px color-mix(in srgb, black, transparent 50%);
+
+  --background: rgb(244, 149, 191);
+  background-color: var(--background);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--background), black 5%);
+  }
+
+  &:active {
+    background-color: color-mix(in srgb, var(--background), black 10%);
+  }
+} */

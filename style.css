@@ -18,6 +18,28 @@ body {
   }
 }
 
+button {
+  cursor: pointer;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    display: grid;
+    place-items: center;
+    background: inherit;
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+
+  &.success::after {
+    content: "✔️";
+    opacity: 1;
+  }
+}
+
 .hero {
   h1 {
     font-size: 2em;
@@ -33,7 +55,6 @@ body {
     margin-block-end: 0;
   }
 }
-
 
 #searchForm,
 .emote-wrapper {
@@ -60,32 +81,12 @@ body {
     aspect-ratio: 1;
     height: 3em;
 
-    position: relative;
-    cursor: pointer;
-
     &[data-clipboard-content]::before {
       content: "📋";
     }
 
     &[type="reset"]::before {
       content: "✖️";
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      display: grid;
-      place-items: center;
-      background: inherit;
-      opacity: 0;
-      transition: opacity 200ms;
-    }
-
-    &.success::after {
-      content: "✔️";
-      opacity: 1;
     }
   }
 }
