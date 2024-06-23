@@ -93,24 +93,10 @@ section.buttons {
   }
 }
 
-/* #saveCategories {
-  position: fixed;
-  inset-inline-end: 1em;
-  inset-block-end: 2em;
-  height: 5em;
-  aspect-ratio: 1;
-  border-radius: 30%;
-  border: none;
-  box-shadow: 1px 3px 4px color-mix(in srgb, black, transparent 50%);
+#emojicons::before {
+  content: "You're all done with this tag! (=^ェ^=)";
 
-  --background: rgb(244, 149, 191);
-  background-color: var(--background);
-
-  &:hover {
-    background-color: color-mix(in srgb, var(--background), black 5%);
-  }
-
-  &:active {
-    background-color: color-mix(in srgb, var(--background), black 10%);
-  }
-} */
+  grid-area: 1 / 1;
+  align-self: center;
+  text-align: center;
+}
