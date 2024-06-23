@@ -117,7 +117,7 @@ function makeEmoteElement(emote) {
   wrapper.classList.add("emote-wrapper-voting")
   wrapper.dataset.emote = emote.id
 
-  const tag = search.value || allTags[0] || ""
+  const tag = search.value || allTags?.[0] || ""
 
   const vote = allVotes[emote.id]?.[tag]
   if (vote != null) wrapper.classList.add("voted")
