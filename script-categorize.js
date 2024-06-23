@@ -207,7 +207,7 @@ function saveData(evt, exportToFile = false) {
 
   if (!exportToFile) return
 
-  const emotesJson = JSON.stringify(allEmotes, null, 2)
+  const emotesJson = JSON.stringify({ allEmotes, allVotes }, null, 2)
   const f = new File([emotesJson], "emotes.json", { type: "application/json" })
   const url = URL.createObjectURL(f)
 
