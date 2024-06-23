@@ -64,6 +64,7 @@ async function loadEmotes() {
 
 async function updateTagOptions() {
   if (!allTags) return
+  let currentTag = search.value
 
   while (search.children.length) {
     search.removeChild(search.firstChild)
@@ -73,6 +74,8 @@ async function updateTagOptions() {
     const el = makeTagElement(tag)
     search.appendChild(el)
   }
+
+  if (currentTag) search.value = currentTag
 }
 
 function makeTagElement(tag) {
@@ -82,9 +85,6 @@ function makeTagElement(tag) {
 
   const votesForTag = allVotes ? Object.values(allVotes).filter(v => v[tag] != null).length : 0
   const tagCount = allEmotes ? allEmotes.length : 0
-
-  // wrapper.dataset.votesCount = votesForTag
-  // wrapper.dataset.emoteCount = tagCount
 
   const progressHint = document.createElement("span")
   progressHint.textContent = ` (${votesForTag} / ${tagCount})`
@@ -163,6 +163,18 @@ function registerVote(emoteId, value) {
   const tag = search.value
 
   allVotes[emoteId][tag] = value
+  saveDebounced()
+}
+
+const voteDebounceDuration = 3_000 // 3 seconds
+let voteDebounce
+
+function saveDebounced() {
+  if (voteDebounce) clearTimeout(voteDebounce)
+
+  voteDebounce = setTimeout(() => {
+    saveData()
+  }, voteDebounceDuration);
 }
 
 function onUndoClick() {
@@ -205,9 +217,9 @@ function saveData(evt, exportToFile = false) {
       evt.target.classList.remove("success")
     }, 1000)
 
-    updateTagOptions()
   }
 
+  updateTagOptions()
 
   if (!exportToFile) return
 
