@@ -1,0 +1,13 @@
+{
+  "name": "look-up",
+  "version": "1.0.0",
+  "description": "A lookup page for emoticons",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node serve"
+  },
+  "author": "@sirs0ri",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
