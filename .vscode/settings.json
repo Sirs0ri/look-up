@@ -4,7 +4,7 @@
       "fileMatch": [
         "emotes.json"
       ],
-      "url": "/public/emotes.schema.json"
+      "url": "/emotes.schema.json"
     }
   ]
 }
