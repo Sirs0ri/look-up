@@ -45,9 +45,7 @@ function filterEmotes() {
 function updateEmoteList() {
   if (!allEmotes) return
 
-  while (emojicons.children.length) {
-    emojicons.removeChild(emojicons.firstChild)
-  }
+  emojicons.innerHTML = ""
 
   if (!filterEmotes.length) {
     emojicons.dataset.emptyMessage = "No match found"
@@ -64,7 +62,7 @@ function makeEmoteElement(emote) {
   wrapper.classList.add("emote-wrapper")
   const label = document.createElement("label")
   label.dataset.emote = emote.text
-  label.innerText = emote.name
+  label.textContent = emote.name
   label.htmlFor = emote.id
 
   const input = document.createElement("input")

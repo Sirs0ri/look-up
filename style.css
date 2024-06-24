@@ -11,49 +11,64 @@ body {
   gap: 2.5em;
   min-height: 100dvh;
   max-width: 600px;
+}
 
-  &>* {
-    margin: 0;
-    padding: 0;
-  }
+body>* {
+  margin: 0;
+  padding: 0;
+}
+
+input,
+button {
+  border: 1px solid color-mix(in srgb, currentColor, transparent);
+  border-radius: 0.25em;
+}
+
+input {
+  padding-inline: 1em;
+}
+
+select,
+button {
+  cursor: pointer;
 }
 
 button {
-  cursor: pointer;
   position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    display: grid;
-    place-items: center;
-    background: inherit;
-    opacity: 0;
-    transition: opacity 200ms;
-  }
-
-  &.success::after {
-    content: "✔️";
-    opacity: 1;
-  }
 }
 
-.hero {
-  h1 {
-    font-size: 2em;
+button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  display: grid;
+  place-items: center;
+  background: inherit;
+  opacity: 0;
+  transition: opacity 200ms;
+}
 
-    sup {
-      font-size: 0.5em;
-    }
-  }
+button.success::after {
+  content: "✔️";
+  opacity: 1;
+}
 
-  h1,
-  p {
-    margin-block-start: 1em;
-    margin-block-end: 0;
-  }
+h1 {
+  font-size: 2em;
+}
+
+h1 sup {
+  font-size: 0.5em;
+}
+
+.hero>* {
+  margin-block-start: 1em;
+  margin-block-end: 0;
+}
+
+label {
+  margin-block: 0.5em 0;
 }
 
 #searchForm,
@@ -64,17 +79,6 @@ button {
 
   label {
     grid-column: span 2;
-    margin-block: 0.5em 0;
-  }
-
-  input,
-  button {
-    border: 1px solid color-mix(in srgb, currentColor, transparent);
-    border-radius: 0.25em;
-  }
-
-  input {
-    padding-inline: 1em;
   }
 
   button {
@@ -92,55 +96,11 @@ button {
 }
 
 #emojicons {
-  list-style-type: none;
-
   display: grid;
-  gap: 1em;
-
-  &:empty::before {
-    content: attr(data-empty-message);
-  }
 }
 
 footer {
   margin-block-start: auto;
-}
-
-.error-anchor {
-  position: fixed;
-  inset-inline: 0;
-  inset-block-end: 0;
-  display: grid;
-  place-items: center;
-  padding: 1em;
-  pointer-events: none;
-
-  .wrapper {
-    padding: 1em;
-    border-radius: 0.5em;
-
-    background-color: hsl(0, 86%, 42%);
-    color: white;
-
-    transition: opacity 200ms;
-    pointer-events: all;
-
-    &.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    button {
-      background: none;
-      border: none;
-      color: inherit;
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
 }
 
 .visually-hidden {

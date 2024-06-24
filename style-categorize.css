@@ -1,4 +1,30 @@
+#tagForm {
+  display: grid;
+  gap: 0.25em;
+}
+
+#emojicons {
+  height: 20em;
+  position: relative;
+  display: block;
+}
+
+#emojicons::before {
+  content: "You're all done with this tag! (=^ェ^=)";
+
+  position: absolute;
+  inset: 0;
+
+  /* grid-area: 1 / 1; */
+  /* align-self: center; */
+  display: grid;
+  place-items: center;
+}
+
 .emote-wrapper-voting {
+  position: absolute;
+  inset: 0;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2em 1em;
@@ -8,63 +34,75 @@
 
   grid-area: 1 / 1;
   background-color: white;
-  transform-origin: 10% 90%;
+  transform-origin: 50% 70%;
 
-  transition-property: scale, opacity, rotate;
-  transition-duration: 200ms;
+  --anim-data: 300ms ease-out;
 
-  position: relative;
-
-  &.voted,
-  &:nth-last-child(1 of :not(.voted)) {
-    box-shadow: 1px 3px 4px color-mix(in srgb, black, transparent 50%);
+  @media (pointer:coarse) {
+    --anim-data: 450ms linear;
   }
 
-  &.voted {
-    pointer-events: none;
-    scale: 0.9;
-    opacity: 0;
-    rotate: -0.1turn;
+  transition: opacity var(--anim-data),
+  transform var(--anim-data);
+
+  /* position: relative; */
+}
+
+.emote-wrapper-voting.voted,
+.emote-wrapper-voting:first-child {
+  filter: drop-shadow(1px 4px 4px color-mix(in srgb, black, transparent 60%));
+}
+
+.emote-wrapper-voting.voted {
+  pointer-events: none;
+  opacity: 0;
+
+  &.yes {
+    transform: scale(0.7) translateY(-50%) translateX(-50%);
   }
 
-  p {
-    text-align: center;
-    grid-column: span 2;
-
-    &.emote-display {
-      height: 3em;
-    }
+  &.no {
+    transform: scale(0.7) translateY(-50%) translateX(50%);
   }
+}
 
-  button {
-    height: 5em;
-    width: 100%;
-    max-width: 15em;
+.emote-wrapper-voting>p {
+  text-align: center;
+  grid-column: span 2;
 
-    border-radius: 0.5em;
-
-    --background: black;
-    background-color: color-mix(in srgb, white, var(--background) 10%);
-    border: 1px solid var(--background);
-
-    &.yes {
-      --background: green;
-      justify-self: end;
-    }
-
-    &.no {
-      --background: red;
-      justify-self: start;
-    }
-
-    &:hover {
-      background-color: color-mix(in srgb, white, var(--background) 15%);
-    }
-
-    &:active {
-      background-color: color-mix(in srgb, white, var(--background) 20%);
-    }
+  &.emote-display {
+    height: 3em;
   }
+}
+
+.emote-wrapper-voting button {
+  height: 5em;
+  width: 100%;
+  max-width: 15em;
+
+  border-radius: 0.5em;
+
+  --background: black;
+  background-color: color-mix(in srgb, white, var(--background) 10%);
+  border: 1px solid var(--background);
+}
+
+.emote-wrapper-voting button.yes {
+  --background: green;
+  justify-self: end;
+}
+
+.emote-wrapper-voting button.no {
+  --background: red;
+  justify-self: start;
+}
+
+.emote-wrapper-voting button:hover {
+  background-color: color-mix(in srgb, white, var(--background) 15%);
+}
+
+.emote-wrapper-voting button:active {
+  background-color: color-mix(in srgb, white, var(--background) 20%);
 }
 
 select#search {
@@ -91,12 +129,4 @@ section.buttons {
   #undo {
     grid-column: span 2;
   }
-}
-
-#emojicons::before {
-  content: "You're all done with this tag! (=^ェ^=)";
-
-  grid-area: 1 / 1;
-  align-self: center;
-  text-align: center;
 }

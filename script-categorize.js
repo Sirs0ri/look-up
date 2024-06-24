@@ -98,9 +98,7 @@ search.addEventListener("change", () => updateEmoteList())
 function updateEmoteList() {
   if (!allEmotes) return
 
-  while (emojicons.children.length) {
-    emojicons.removeChild(emojicons.firstChild)
-  }
+  emojicons.innerHTML = ""
 
   if (!allEmotes.length) {
     emojicons.dataset.emptyMessage = "No match found"
@@ -113,7 +111,7 @@ function updateEmoteList() {
 }
 
 function makeEmoteElement(emote) {
-  const wrapper = document.createElement("li")
+  const wrapper = document.createElement("article")
   wrapper.classList.add("emote-wrapper-voting")
   wrapper.dataset.emote = emote.id
 
@@ -124,11 +122,11 @@ function makeEmoteElement(emote) {
 
   const name = document.createElement("p")
   name.classList.add("emote-name")
-  name.innerText = emote.name
+  name.textContent = emote.name
 
   const emoteDisplay = document.createElement("p")
   emoteDisplay.classList.add("emote-display")
-  emoteDisplay.innerText = emote.text
+  emoteDisplay.textContent = emote.text
 
   const btnYes = document.createElement("button")
   btnYes.classList.add("yes")
@@ -153,6 +151,7 @@ function onVoteBtnClick(evt) {
   const emoteId = evt.target.parentElement.dataset.emote
 
   evt.target.parentElement.classList.add("voted")
+  evt.target.parentElement.classList.add(isYesVote ? "yes" : "no")
 
   registerVote(emoteId, isYesVote)
 }
@@ -178,9 +177,9 @@ function saveDebounced() {
 }
 
 function onUndoClick() {
-  const lastVote = document.querySelector("li.voted")
+  const lastVote = document.querySelector(".emote-wrapper-voting.voted")
   if (!lastVote) return
-  lastVote.classList.remove("voted")
+  lastVote.classList.remove("voted", "yes", "no")
   const tag = search.value
   const emote = lastVote.dataset.emote
   registerVote(lastVote.dataset.emote, undefined)

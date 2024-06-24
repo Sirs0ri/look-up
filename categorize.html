@@ -15,14 +15,14 @@
 <body>
   <section class="hero">
     <h1>look up! ◔‿◔<sup>🌸</sup></h1>
-    <p>A lookup page for emoticons</p>
+    <p><a href="/">To the homepage</a>.</p>
   </section>
-  <form id="searchForm">
+  <form id="tagForm">
     <label for="search">Select a tag:</label>
     <select id="search" type="text"></select>
   </form>
   <p>Does the following emote match the selected tag?</p>
-  <ul id="emojicons" data-empty-message="Loading..."></ul>
+  <section id="emojicons" data-empty-message="Loading..."></section>
 
   <section class="buttons">
 
@@ -36,13 +36,6 @@
       href="https://web.archive.org/web/20221208223019/https://emojicons.com/home" target="_blank">
       emojicons.</a>
   </footer>
-
-  <div class="error-anchor">
-    <div class="wrapper hidden">
-      <span id="error"></span>
-      <button id="clearError">ok</button>
-    </div>
-  </div>
 </body>
 
 </html>
